@@ -1,0 +1,6 @@
+Resource resource = new ClassPathResource("./application.properties");
+		Properties prop= PropertiesLoaderUtils.loadProperties(resource);
+
+		System.out.println("PORT PORT PORT: " +prop.getProperty("init-db"));
+		System.out.println("PORT PORT PORT: " +prop.getProperty("jdbc.username"));
+		System.out.println("PORT PORT PORT: " +prop.getProperty("jdbc.password"));
