@@ -9,7 +9,7 @@ public class AdminFactory {
     public static Admin createAdmin(Admin newAdmin) {
         Admin factoryAdmin = new Admin();
 
-        factoryAdmin.setId(newAdmin.getId());
+//        factoryAdmin.setId(newAdmin.getId());
         factoryAdmin.setName(newAdmin.getName());
         factoryAdmin.setId(newAdmin.getId());
         factoryAdmin.setSurname(newAdmin.getSurname());

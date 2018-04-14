@@ -12,7 +12,7 @@ public class TargetFactory {
 
         targetFactory.setName(newTaget.getName());
         targetFactory.setSurname(newTaget.getSurname());
-        targetFactory.setAddress(newTaget.getAddress());
+        //targetFactory.setAddress(newTaget.getAddress());
         targetFactory.setId(newTaget.getId());
         targetFactory.setEmail(newTaget.getEmail());
         targetFactory.setGender(targetFactory.getGender());

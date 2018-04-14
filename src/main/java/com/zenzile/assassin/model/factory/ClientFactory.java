@@ -16,7 +16,7 @@ public class ClientFactory {
         factoryClient.setGender(newClient.getGender());
         factoryClient.setEmail(newClient.getEmail());
         factoryClient.setRegistrationDate(new Date());
-        factoryClient.setAddress(factoryClient.getAddress());
+       // factoryClient.setAddress(factoryClient.getAddress());
         factoryClient.setUserType(UserType.CLIENT);
 
         return factoryClient;

@@ -20,7 +20,7 @@ public class User implements Serializable {
     private String gender;
 
     @Column(unique = true, nullable = false)
-    @NotNull
+//    @NotNull
     @Email
     private String email;
 

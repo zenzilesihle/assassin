@@ -1,7 +1,6 @@
 package com.zenzile.assassin.model;
 
 import com.zenzile.assassin.model.constants.TargetStatus;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,9 +13,10 @@ public class Target extends User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
-    @NotNull
-    private Address address;
+//    @Column(nullable = false)
+//    @NotNull
+//    @JoinColumn(name="address_id")
+//    private Address address;
 
     private TargetStatus targetStatus;
 
@@ -28,13 +28,13 @@ public class Target extends User implements Serializable {
         this.id = id;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
 
     public TargetStatus getTargetStatus() {
         return targetStatus;

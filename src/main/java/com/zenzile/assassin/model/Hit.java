@@ -1,7 +1,5 @@
 package com.zenzile.assassin.model;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;

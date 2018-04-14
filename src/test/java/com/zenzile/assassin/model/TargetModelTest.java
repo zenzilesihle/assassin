@@ -16,8 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TargetModelTest {
     private Target target;
 
-
-
     @Test
     public void testUserType() {
         Assert.assertNotNull(target);
