@@ -17,17 +17,13 @@ public class AssassinApplicationTests {
 
 	@Test
 	public void testApp() {
-		Client client = new Client();
 		Hit hit = new Hit();
 		Member member = new Member();
 		Admin admin = new Admin();
-		Target target = new Target();
 
-		Assert.assertNotNull(client);
 		Assert.assertNotNull(hit);
 		Assert.assertNotNull(member);
 		Assert.assertNotNull(admin);
-		Assert.assertNotNull(target);
 	}
 
 }
