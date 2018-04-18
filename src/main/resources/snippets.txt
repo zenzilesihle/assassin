@@ -4,3 +4,9 @@ Resource resource = new ClassPathResource("./application.properties");
 		System.out.println("PORT PORT PORT: " +prop.getProperty("init-db"));
 		System.out.println("PORT PORT PORT: " +prop.getProperty("jdbc.username"));
 		System.out.println("PORT PORT PORT: " +prop.getProperty("jdbc.password"));
+
+
+        while(admins.iterator().hasNext()) {
+            Admin artist = admins.iterator().next();
+            adminArray.add(artist);
+        }

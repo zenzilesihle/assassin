@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS assassin.admins (
 );
 
 
-CREATE TABLE IF NOT EXISTS assassin.users (
+CREATE TABLE IF NOT EXISTS assassin.members (
   id INT(70) NOT NULL AUTO_INCREMENT,
   name INT(70) NOT NULL,
   surname VARCHAR(45) NOT NULL,

@@ -1,8 +1,6 @@
 package com.zenzile.assassin.model;
 
-import com.zenzile.assassin.model.factory.HitFactory;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,19 +15,17 @@ public class HitModelTest {
 
     @Test
     public void testHit() {
-        Assert.assertNotNull(hit);
+
     }
 
     @Before
-    public void init() {
-//        hit = HitFactory.createHit(new Hit());
-    }
+    public void setUp() {
 
+    }
 
     @After
     @Test
-    public void deleteModel(){
-        hit = null;
-        Assert.assertNull(hit);
+    public void cleanUp(){
+
     }
 }

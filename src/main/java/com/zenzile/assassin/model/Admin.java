@@ -45,7 +45,7 @@ public class Admin  implements Serializable {
         private String email;
 
         public AdminBuilder (String name) {
-            this.id = id;
+            this.name = name;
         }
 
         public AdminBuilder id(Long id) {

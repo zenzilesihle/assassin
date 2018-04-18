@@ -11,8 +11,8 @@ public class AdminFactory {
         return new Admin
                 .AdminBuilder(newAdmin.getName())
                 .email(newAdmin.getEmail())
+                .surname(newAdmin.getSurname())
                 .password(newAdmin.getPassword())
-                .id(newAdmin.getId())
                 .build();
     }
 }
