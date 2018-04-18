@@ -25,6 +25,10 @@ public class Admin  implements Serializable {
     @Email
     private String email;
 
+    private Admin() {
+
+    }
+
     public Admin(AdminBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
@@ -33,7 +37,7 @@ public class Admin  implements Serializable {
         this.password = builder.password;
     }
 
-    private static class AdminBuilder {
+    public static class AdminBuilder {
         private Long id;
         private String name;
         private String surname;

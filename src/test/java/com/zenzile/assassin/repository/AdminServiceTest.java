@@ -29,7 +29,7 @@ public class AdminServiceTest {
     @Test
     public void testSave() {
 
-        System.out.println("THIS IS NAME: "+admin.getName());
+//        System.out.println("THIS IS NAME: "+admin.getName());
 
         adminRepository.save(admin);
 
@@ -43,13 +43,13 @@ public class AdminServiceTest {
 
 //        adminRepository.findAll();
 
-        admin = new Admin();
+//        admin = new Admin();
 //        admin.setId(admin.getId());
-        admin.setEmail("sandakahle@gmail.com");
-        admin.setName("Sandakahle");
-        admin.setGender("Female");
-        admin.setSurname("Sanda");
-        admin = AdminFactory.createAdmin(admin);
+//        admin.setEmail("sandakahle@gmail.com");
+//        admin.setName("Sandakahle");
+//        admin.setGender("Female");
+//        admin.setSurname("Sanda");
+//        admin = AdminFactory.createAdmin(admin);
 //        id = admin.getId();
 
     }

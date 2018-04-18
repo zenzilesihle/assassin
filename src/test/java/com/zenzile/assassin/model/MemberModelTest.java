@@ -30,12 +30,7 @@ public class MemberModelTest {
 
     @Before
     public void init() {
-        member = MemberFactor.createMember(new Member());
-        member.setId(member.getId());
-        member.setEmail("sihlezen10@gmail.com");
-        member.setName("Sihle");
-        member.setGender("Male");
-        member.setSurname("Zenzile");
+//        member = MemberFactor.createMember(new Member());
     }
 
 

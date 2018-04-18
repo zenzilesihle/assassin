@@ -22,7 +22,7 @@ public class HitModelTest {
 
     @Before
     public void init() {
-        hit = HitFactory.createHit(new Hit());
+//        hit = HitFactory.createHit(new Hit());
     }
 
 

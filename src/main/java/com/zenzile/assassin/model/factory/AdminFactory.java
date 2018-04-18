@@ -8,6 +8,11 @@ import java.util.Date;
 public class AdminFactory {
     public static Admin createAdmin(Admin newAdmin) {
 
-        return newAdmin;
+        return new Admin
+                .AdminBuilder(newAdmin.getName())
+                .email(newAdmin.getEmail())
+                .password(newAdmin.getPassword())
+                .id(newAdmin.getId())
+                .build();
     }
 }

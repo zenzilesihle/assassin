@@ -44,7 +44,7 @@ public class Hit implements Serializable{
         this.targetStatus = builder.targetStatus;
     }
 
-    private static class HitBuilder {
+    public static class HitBuilder {
         private Long id;
         private double amount;
         private String address;
