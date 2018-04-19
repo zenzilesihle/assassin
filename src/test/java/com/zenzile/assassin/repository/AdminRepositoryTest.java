@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -42,6 +43,10 @@ public class AdminRepositoryTest {
         Assert.assertEquals("Name Do Not Match", newAdmin.getName(), savedAdmin.get().getName());
         Assert.assertEquals("Email Do Not Match", newAdmin.getEmail(), savedAdmin.get().getEmail());
         Assert.assertEquals("ID Do Not Match", newAdmin.getId(), savedAdmin.get().getId());
+        System.out.println(newAdmin.getId()+" JUJUJUJUJU");
+        System.out.println(newAdmin.getId()+" JUJUJUJUJU");
+        System.out.println(newAdmin.getId()+" JUJUJUJUJU");
+        System.out.println(newAdmin.getId()+" JUJUJUJUJU");
     }
 
     @Test
@@ -67,7 +72,19 @@ public class AdminRepositoryTest {
     }
 
     @Test
-    public void test4Delete() {
+    public void test4FindByEmail() {
+        List<Admin> emailAdmin = adminRepository.findAdminByEmail("tigerwoods@yahoo.com");
+        List<Admin> wrongEmail = adminRepository.findAdminByEmail("WrongEmail@yahoo.c");
+
+        Assert.assertNotNull(emailAdmin);
+        Assert.assertNotNull(emailAdmin.size() == 1);
+        Assert.assertTrue(wrongEmail.size() == 0);
+
+        Assert.assertEquals("Emails Don't Match", "tigerwoods@yahoo.com", emailAdmin.get(0).getEmail());
+    }
+
+    @Test
+    public void test5Delete() {
         Iterable<Admin> admins = adminRepository.findAll();
         Assert.assertTrue(admins.iterator().hasNext());
 
