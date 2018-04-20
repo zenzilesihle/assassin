@@ -22,7 +22,7 @@ public class AdminServiceImpl implements AdminService {
             adminRepository.save(newAdmin);
             return adminRepository.findById(newAdmin.getId()).get();
         } else
-            return null;
+            return newAdmin;
     }
 
     @Override

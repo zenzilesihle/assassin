@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS assassin.admins;
-DROP TABLE IF EXISTS assassin.users;
+DROP TABLE IF EXISTS assassin.members;
 DROP TABLE IF EXISTS assassin.hits;
 
 CREATE TABLE IF NOT EXISTS assassin.admins (

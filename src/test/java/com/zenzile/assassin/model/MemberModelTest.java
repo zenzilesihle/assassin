@@ -1,15 +1,14 @@
 package com.zenzile.assassin.model;
 
+import com.zenzile.assassin.AssassinApplicationTests;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.runners.MethodSorters;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class MemberModelTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class MemberModelTest extends AssassinApplicationTests {
     private Member member;
 
     @Test

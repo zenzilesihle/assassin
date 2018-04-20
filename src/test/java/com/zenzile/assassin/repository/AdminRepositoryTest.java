@@ -1,21 +1,18 @@
 package com.zenzile.assassin.repository;
 
+import com.zenzile.assassin.AssassinApplicationTests;
 import com.zenzile.assassin.model.Admin;
 import com.zenzile.assassin.model.factory.AdminFactory;
 import org.junit.*;
-import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AdminRepositoryTest {
+public class AdminRepositoryTest extends AssassinApplicationTests {
     @Autowired
     private AdminRepository adminRepository;
 
@@ -43,10 +40,6 @@ public class AdminRepositoryTest {
         Assert.assertEquals("Name Do Not Match", newAdmin.getName(), savedAdmin.get().getName());
         Assert.assertEquals("Email Do Not Match", newAdmin.getEmail(), savedAdmin.get().getEmail());
         Assert.assertEquals("ID Do Not Match", newAdmin.getId(), savedAdmin.get().getId());
-        System.out.println(newAdmin.getId()+" JUJUJUJUJU");
-        System.out.println(newAdmin.getId()+" JUJUJUJUJU");
-        System.out.println(newAdmin.getId()+" JUJUJUJUJU");
-        System.out.println(newAdmin.getId()+" JUJUJUJUJU");
     }
 
     @Test
@@ -88,10 +81,16 @@ public class AdminRepositoryTest {
         Iterable<Admin> admins = adminRepository.findAll();
         Assert.assertTrue(admins.iterator().hasNext());
 
-        adminRepository.deleteById(admins.iterator().next().getId());
+        adminRepository.deleteAll(admins);
 
         Iterable<Admin> adminsAfterDelete = adminRepository.findAll();
-        Assert.assertFalse(adminsAfterDelete.iterator().hasNext());
+
+        List<Admin> deleted = new ArrayList<>();
+
+        if (adminsAfterDelete.iterator().hasNext())
+            deleted.add(adminsAfterDelete.iterator().next());
+
+        Assert.assertTrue("Delete All admin Fail",deleted.size() == 0);
     }
 
     @After

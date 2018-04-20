@@ -1,16 +1,11 @@
 package com.zenzile.assassin.model;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import com.zenzile.assassin.AssassinApplicationTests;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class AdminModelTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class AdminModelTest extends AssassinApplicationTests {
     private Admin admin;
 
     @Test
