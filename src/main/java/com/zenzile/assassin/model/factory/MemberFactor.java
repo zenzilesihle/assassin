@@ -8,16 +8,15 @@ import java.util.Date;
 
 public class MemberFactor {
     public static Member createMember(Member newMember) {
-        Member factoryMember = new Member();
 
-        factoryMember.setId(newMember.getId());
-        factoryMember.setUserType(UserType.MEMBER);
-        factoryMember.setName(newMember.getName());
-        factoryMember.setSurname(newMember.getSurname());
-        factoryMember.setGender(newMember.getGender());
-        factoryMember.setEmail(newMember.getEmail());
-        factoryMember.setRegistrationDate(new Date());
-
-        return factoryMember;
+        return new Member
+                .MemberBuilder(newMember.getName())
+                .surname(newMember.getSurname())
+                .email(newMember.getEmail())
+                .gender(newMember.getGender())
+                .registrationDate(new Date())
+                .userType(newMember.getUserType())
+                .id(newMember.getId())
+                .build();
     }
 }

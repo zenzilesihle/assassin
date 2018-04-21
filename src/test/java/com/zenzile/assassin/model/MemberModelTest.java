@@ -1,48 +1,29 @@
 package com.zenzile.assassin.model;
 
-import com.zenzile.assassin.model.constants.UserType;
-import com.zenzile.assassin.model.factory.MemberFactor;
+import com.zenzile.assassin.AssassinApplicationTests;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.runners.MethodSorters;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class MemberModelTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class MemberModelTest extends AssassinApplicationTests {
     private Member member;
 
     @Test
-    public void testUserType() {
-        Assert.assertNotNull(member);
-
-        Assert.assertTrue(UserType.MEMBER.equals(member.getUserType()));
-
-        Assert.assertEquals("Sihle", member.getName());
-        Assert.assertEquals("Zenzile", member.getSurname());
-        Assert.assertEquals("Male", member.getGender());
-        Assert.assertEquals("sihlezen10@gmail.com", member.getEmail());
+    public void testMember() {
 
     }
 
     @Before
-    public void init() {
-        member = MemberFactor.createMember(new Member());
-        member.setId(member.getId());
-        member.setEmail("sihlezen10@gmail.com");
-        member.setName("Sihle");
-        member.setGender("Male");
-        member.setSurname("Zenzile");
-    }
+    public void setUp() {
 
+    }
 
     @After
     @Test
-    public void deleteModel(){
-        member = null;
-        Assert.assertNull(member);
+    public void cleanUp(){
+
     }
 }

@@ -1,58 +1,82 @@
 package com.zenzile.assassin.service;
 
+import com.zenzile.assassin.AssassinApplicationTests;
 import com.zenzile.assassin.model.Admin;
-import com.zenzile.assassin.model.factory.AdminFactory;
 import com.zenzile.assassin.repository.AdminRepository;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class AdminServiceTest {
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class AdminServiceTest extends AssassinApplicationTests {
     @Autowired
     private AdminService adminService;
 
     @Autowired
     private AdminRepository adminRepository;
 
-    private Admin admin;
-
-    private long id;
-
     @Test
-    public void testSave() {
+    public void test1Register() {
+        Admin admin = new Admin.AdminBuilder("Sachin")
+                .surname("Tendukar")
+                .email("sachin@gmail.com")
+                .password("sachin12345")
+                .build();
 
-        adminRepository.save(admin);
+        Admin savedAdmin = adminService.registerAdmin(admin);
 
-        Iterable<Admin> newAdmin = adminRepository.findAll();
-
-        Assert.assertNotNull(newAdmin);
+        Assert.assertNotNull("Admin Object Is Null", savedAdmin);
+        Assert.assertEquals("Emails Are Different", admin.getEmail(), savedAdmin.getEmail());
+        Assert.assertEquals("Password Are Different", admin.getPassword(), savedAdmin.getPassword());
+        Assert.assertEquals("Surname Are Different", admin.getSurname(), savedAdmin.getSurname());
+        Assert.assertEquals("Name Are Different", admin.getName(), savedAdmin.getName());
     }
 
-    @Before
-    public void init() {
+    @Test
+    public void test2FindByEmail() {
+        Iterable<Admin> admins = adminRepository.findAll();
+        Admin selectOne = admins.iterator().next();
 
-        admin = new Admin();
-//        admin.setId(admin.getId());
-        admin.setEmail("sandakahle@gmail.com");
-        admin.setName("Sandakahle");
-        admin.setGender("Female");
-        admin.setSurname("Sanda");
-        admin = AdminFactory.createAdmin(admin);
-        id = admin.getId();
+        String email = adminRepository.findById(selectOne.getId()).get().getEmail();
+        Assert.assertNotNull(email);
 
+        Admin emailAdmin = adminService.findByEmail(email);
+        Assert.assertNotNull(emailAdmin);
+        Assert.assertEquals("sachin@gmail.com", emailAdmin.getEmail());
+    }
+
+    @Test
+    public void test3Update() {
+        Iterable<Admin> admins = adminRepository.findAll();
+        Admin selectOne = admins.iterator().next();
+
+        Admin updateAdmin = new Admin
+                .AdminBuilder(selectOne.getName())
+                .copy(selectOne)
+                .surname("Dhoni")
+                .build();
+
+        Admin newUpdated = adminService.updateAdmin(updateAdmin);
+        Assert.assertNotNull(newUpdated);
+        Assert.assertEquals("ID Not The Same", selectOne.getId(), newUpdated.getId());
+        Assert.assertNotEquals("Surname Still Same", selectOne.getSurname(), newUpdated.getSurname());
+    }
+
+    @Test
+    public void test4Delete(){
+        adminService.deleteAdmin(1L);
+
+        Assert.assertFalse(adminRepository.findAll().iterator().hasNext());
     }
 
     @After
-    @Test
     public void cleanUp(){
-        adminRepository.delete(admin);
-        Assert.assertTrue(adminRepository.count() == 0);
+
+    }
+
+    @Before
+    public void setUp() {
+
     }
 }
