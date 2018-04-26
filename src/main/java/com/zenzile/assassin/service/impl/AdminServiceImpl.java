@@ -42,8 +42,10 @@ public class AdminServiceImpl implements AdminService {
             return null;
         else {
             List<Admin> admins = adminRepository.findAdminByEmail(email);
-
-            return admins.get(0);
+            if (admins.size() == 0)
+                return null;
+            else
+                return admins.get(0);
         }
     }
 

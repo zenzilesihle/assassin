@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Document
 @Table(name = "members")
 public class Member implements Serializable {
     @Id

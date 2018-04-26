@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Document
 @Table(name = "hits")
 public class Hit implements Serializable{
     @Id

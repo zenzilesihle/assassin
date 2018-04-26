@@ -13,7 +13,6 @@ public class HitFactory {
                 .amount(newHit.getAmount())
                 .member(newHit.getMember())
                 .targetStatus(TargetStatus.ALIVE)
-                .id(newHit.getId())
                 .build();
     }
 }

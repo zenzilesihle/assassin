@@ -10,7 +10,8 @@ import org.junit.runners.MethodSorters;
 import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AdminControllerTest extends AssassinApplicationTests {
+public class MemberControllerTest extends AssassinApplicationTests {
+
 
     @Test
     public void test1AddAdmin() {

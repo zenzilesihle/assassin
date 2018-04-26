@@ -16,7 +16,6 @@ public class MemberFactor {
                 .gender(newMember.getGender())
                 .registrationDate(new Date())
                 .userType(newMember.getUserType())
-                .id(newMember.getId())
                 .build();
     }
 }

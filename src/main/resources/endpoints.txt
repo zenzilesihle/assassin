@@ -1,0 +1,30 @@
+**********************1. ADMIN **********************************************
+url                             |method     |description        |example
+---------------------------------------------------------------------------------------------
+localhost:8081/admin           |POST       |add new admin          |{"name":"dummy","surname":"user","password":"test","email":"test@user.com"}
+localhost:8081/admin           |GET        |get all admins         |localhost:8081/admin
+localhost:8081/admin/{id}/admin|GET        |find admin by id       |localhost:8081/admin/1/admin
+localhost:8081/admin/{email}   |GET        |find admin by email    |http://localhost:8081/admin/email=tigerwoods@yahoo.com
+localhost:8081/admin           |PUT        |update admin           |(n/a)
+_____________________________________________________________________________________________________________________________________________
+**********************2. MEMBERS *****************************************
+url                                    |method     |description                |example
+---------------------------------------------------------------------------------------------
+localhost:8081/member                  |POST       |add new member             |{}
+localhost:8081/member                  |GET        |get all members            |localhost:8081/member
+localhost:8081/member/{id}             |GET        |find member by id          |localhost:8081/admin/1
+localhost:8081/member/{type}/members   |GET        |find members by type       |localhost:8081/member/client/members
+localhost:8081/member/{id}             |PUT        |update member              |n/a
+
+
+  _____________________________________________________________________________________________________________________________________________
+**********************3. HITS *****************************************
+url                             |method       |description        |example
+---------------------------------------------------------------------------------------------
+localhost:8081/hit                      |POST           |add new hit            |localhost:8081/hit
+localhost:8081/hit                      |GET            |view all hits          |localhost:8081/member/
+localhost:8081/hit/{id}                 |GET            |view a single hit      |localhost:8081/hit/1
+localhost:8081/hit/{status}/hits        |GET            |view hit by status     |localhost:8081/hit/alive/hits
+localhost:8081/hit/{id}                 |PUT            |update hit             |localhost:8081/hit/
+--------------------------------------------------------------------------------------------
+localhost:8081/member/{id}/member       |GET            |view all member hits   |localhost:8081/member/{id}/member
