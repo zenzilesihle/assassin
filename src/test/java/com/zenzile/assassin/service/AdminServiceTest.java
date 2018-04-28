@@ -65,7 +65,7 @@ public class AdminServiceTest extends AssassinApplicationTests {
 
     @Test
     public void test4Delete(){
-        adminService.deleteAdmin(1L);
+        adminRepository.deleteAll();
 
         Assert.assertFalse(adminRepository.findAll().iterator().hasNext());
     }

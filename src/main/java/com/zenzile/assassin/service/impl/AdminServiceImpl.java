@@ -18,9 +18,18 @@ public class AdminServiceImpl implements AdminService {
     public Admin registerAdmin(Admin admin) {
         Admin newAdmin = AdminFactory.createAdmin(admin);
 
+
+
         if(checkMissingFields(newAdmin)) {
-            adminRepository.save(newAdmin);
-            return adminRepository.findById(newAdmin.getId()).get();
+            Admin oldAdmin = findByEmail(admin.getEmail());
+            if (null != oldAdmin) {
+                return null;
+            } else {
+
+                adminRepository.save(newAdmin);
+                return adminRepository.findById(newAdmin.getId()).get();
+            }
+
         } else
             return newAdmin;
     }

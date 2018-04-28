@@ -7,10 +7,9 @@ import com.zenzile.assassin.service.AdminService;
 import org.assertj.core.util.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -21,7 +20,7 @@ public class AdminController {
     @Autowired
     private AdminRepository adminRepository;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus( HttpStatus.CREATED )
     @ResponseBody
     public Admin addAdmin(@RequestBody Admin admin){
@@ -38,18 +37,6 @@ public class AdminController {
     @ResponseStatus( HttpStatus.OK )
     @ResponseBody
     public Iterable<Admin> findAll(){
-
-        Admin admin = new Admin
-                .AdminBuilder("Tiger")
-                .surname("Woods")
-                .email("tigerwoods@yahoo.com")
-                .password("WOODS-T")
-                .build();
-
-        Admin newAdmin = AdminFactory.createAdmin(admin);
-
-        adminRepository.deleteAll();
-        adminRepository.save(newAdmin);
 
         Iterable<Admin> admins = adminRepository.findAll();
 
@@ -74,21 +61,15 @@ public class AdminController {
          * it doesn't find email any record, test pass though
          * */
 
-        if(adminRepository.findAdminByEmail(email) == null)
+        if(adminRepository.findAdminByEmail(email) != null)
             return adminRepository.findAdminByEmail(email).get(0);
         else {
-            Admin admin = new Admin
-                    .AdminBuilder("Dummy")
-                    .surname("User")
-                    .email("test@user.com")
-                    .password("test-T")
-                    .build();
-            return admin;
+            return null;
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT )
-    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED )
     public Admin update(@RequestBody Admin admin ){
         Preconditions.checkNotNull(admin);
         Preconditions.checkNotNull(adminRepository.findById(admin.getId()));

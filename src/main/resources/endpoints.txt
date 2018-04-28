@@ -1,7 +1,7 @@
 **********************1. ADMIN **********************************************
 url                             |method     |description        |example
 ---------------------------------------------------------------------------------------------
-localhost:8081/admin           |POST       |add new admin          |{"name":"dummy","surname":"user","password":"test","email":"test@user.com"}
+localhost:8081/admin           |POST       |add new admin          |{"id": null,"name":"dummy","surname":"user","password":"test","email":"test@user.com"}
 localhost:8081/admin           |GET        |get all admins         |localhost:8081/admin
 localhost:8081/admin/{id}/admin|GET        |find admin by id       |localhost:8081/admin/1/admin
 localhost:8081/admin/{email}   |GET        |find admin by email    |http://localhost:8081/admin/email=tigerwoods@yahoo.com
