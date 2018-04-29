@@ -122,7 +122,6 @@ public class AdminControllerTest extends AssassinApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("surname", is("Maka")))
                 .andExpect(jsonPath("email", is("sive@gmail.com")))
-                .andExpect(jsonPath("password", is("sivemaka")))
                 .andExpect(status().isOk());
     }
 
@@ -174,9 +173,7 @@ public class AdminControllerTest extends AssassinApplicationTests {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(mappedAdmin))
                 .andExpect(status().is(202))
-                .andExpect(jsonPath("surname", is("Ngami")))
-                .andExpect(jsonPath("password", not("1111111")))
-                .andExpect(jsonPath("password", is("XXXXX")));
+                .andExpect(jsonPath("surname", is("Ngami")));
     }
 
     @Test

@@ -4,6 +4,7 @@ import com.zenzile.assassin.model.Admin;
 import com.zenzile.assassin.model.factory.AdminFactory;
 import com.zenzile.assassin.repository.AdminRepository;
 import com.zenzile.assassin.service.AdminService;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,6 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin registerAdmin(Admin admin) {
         Admin newAdmin = AdminFactory.createAdmin(admin);
-
-
 
         if(checkMissingFields(newAdmin)) {
             Admin oldAdmin = findByEmail(admin.getEmail());
@@ -36,6 +35,13 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin updateAdmin(Admin admin) {
+
+        Admin oldAdmin = adminRepository.findById(admin.getId()).get();
+
+        /**handles password changes**/
+        if(!admin.getPassword().equals(oldAdmin.getPassword())) {
+            admin = encryptNewPassword(admin);
+        }
 
         if(checkMissingFields(admin)) {
             adminRepository.save(admin);
@@ -78,5 +84,15 @@ public class AdminServiceImpl implements AdminService {
             passValidation = false;
 
         return passValidation;
+    }
+
+    private Admin encryptNewPassword(Admin admin) {
+        StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+        Admin passAdmin = new Admin.AdminBuilder(admin.getName())
+                .copy(admin)
+                .password(encryptor.encryptPassword(admin.getPassword()))
+                .build();
+
+        return passAdmin;
     }
 }
