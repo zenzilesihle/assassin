@@ -23,21 +23,15 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus( HttpStatus.CREATED )
     @ResponseBody
-    public Admin addAdmin(@RequestBody Admin admin){
-        Preconditions.checkNotNull( admin );
-
-        /****
-         need to handle null
-        // */
+    public Admin addAdmin(@RequestBody Admin admin) {
+        Preconditions.checkNotNull(admin);
         return adminService.registerAdmin(admin);
     }
-
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     @ResponseStatus( HttpStatus.OK )
     @ResponseBody
     public Iterable<Admin> findAll(){
-
         Iterable<Admin> admins = adminRepository.findAll();
 
         return admins;
@@ -87,7 +81,6 @@ public class AdminController {
     @ResponseStatus( HttpStatus.OK )
     @ResponseBody
     public Admin admin(){
-
         Admin testAdmin = new Admin
                 .AdminBuilder("Mbali")
                 .surname("Mbali")

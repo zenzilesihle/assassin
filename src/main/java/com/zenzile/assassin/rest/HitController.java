@@ -10,12 +10,14 @@ import com.zenzile.assassin.model.factory.MemberFactor;
 import com.zenzile.assassin.repository.AdminRepository;
 import com.zenzile.assassin.repository.HitRepository;
 import com.zenzile.assassin.repository.MemberRepository;
-import com.zenzile.assassin.service.AdminService;
 import com.zenzile.assassin.service.HitService;
+import com.zenzile.assassin.service.AdminService;
 import com.zenzile.assassin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/hit")
@@ -33,21 +35,16 @@ public class HitController {
     @Autowired
     private AdminRepository adminRepository;
 
-
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public void addHit(@RequestBody Hit hit) {
+        Optional<Member> member = memberRepository.findById(hit.getMember().getId());
+        Optional<Admin> admin = adminRepository.findById(hit.getAdmin().getId());
 
-        hitService.registerHit(hit);
+        if (member.isPresent() || admin.isPresent())
+            hitService.registerHit(hit);
     }
-
-
-
-
-
-
-
 
     @RequestMapping(value = "/test",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -102,8 +99,6 @@ public class HitController {
 
         return memberRepository.save(newMember);
 
-
-
 //        {
 //            "id":null,
 //                "amount":300000.0,
@@ -122,5 +117,24 @@ public class HitController {
 //                "password":"peterer666",
 //                "email":"peter@gmail.com"}
 //        }
+    }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteHit(@PathVariable Long id ) {
+        Optional<Hit> hitToDelete = hitRepository.findById(id);
+
+        if( hitToDelete.isPresent())
+            hitRepository.deleteById(hitToDelete.get().getId());
+        return;
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateHit(@RequestBody Hit hit) {
+        Optional<Hit> hitToUpdate = hitRepository.findById(hit.getId());
+
+        if(hitToUpdate.isPresent())
+            hitRepository.save(hit);
     }
 }
