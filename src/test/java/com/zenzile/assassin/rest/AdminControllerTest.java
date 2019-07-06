@@ -34,6 +34,7 @@ public class AdminControllerTest extends AssassinApplicationTests {
     private AdminRepository adminRepository;
     @Autowired
     private AdminService adminService;
+
     @Autowired
     private WebApplicationContext applicationContext;
 
@@ -43,6 +44,8 @@ public class AdminControllerTest extends AssassinApplicationTests {
     @Before
     @Test
     public void setUp() throws Exception {
+
+        Assert.assertNotNull(applicationContext);
 
         objectMapper = new ObjectMapper();
         this.mockMvc = MockMvcBuilders
@@ -224,7 +227,7 @@ public class AdminControllerTest extends AssassinApplicationTests {
 
     @After
     public void cleanUp() {
-        adminRepository.deleteAll();
+//        adminRepository.deleteAll();
 
     }
 }
